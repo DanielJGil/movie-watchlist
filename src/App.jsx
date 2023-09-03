@@ -1,29 +1,10 @@
-const tempMovieData = [
-  {
-    imdbID: "tt1375666",
-    Title: "Inception",
-    Year: "2010",
-    runtime: 123,
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-  },
-  {
-    imdbID: "tt0133093",
-    Title: "The Matrix",
-    Year: "1999",
-    runtime: 148,
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-  },
-  {
-    imdbID: "tt6751668",
-    Title: "Parasite",
-    Year: "2019",
-    runtime: 119,
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
-  },
-];
+import { useEffect } from "react";
+import Box from "./Box";
+import Header from "./Header";
+import MainContent from "./MainContent";
+import SearchResults from "./SearchResults";
+import WatchList from "./WatchList";
+import { useState } from "react";
 
 const tempWatchedData = [
   {
@@ -48,109 +29,41 @@ const tempWatchedData = [
   },
 ];
 
+const KEY = "d4e50f45";
+
 export default function App() {
+  const [movie, setMovie] = useState("interstellar");
+  const [movieResults, setMovieResults] = useState(null);
+
+  useEffect(
+    function () {
+      async function fetchMovies() {
+        const res = await fetch(
+          `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${movie}`
+        );
+        const data = await res.json();
+        console.log(data.Search);
+        setMovieResults(data.Search);
+      }
+
+      fetchMovies();
+    },
+    [movie]
+  );
+
   return (
     <div>
-      <Header />
+      <Header movie={movie} setMovie={setMovie} />
 
-      <Main>
+      <MainContent>
         <Box>
-          <SearchResults />
+          <SearchResults movieResults={movieResults} />
         </Box>
 
         <Box>
-          <WatchList />
+          <WatchList tempWatchedData={tempWatchedData} />
         </Box>
-      </Main>
+      </MainContent>
     </div>
-  );
-}
-
-function Header() {
-  return (
-    <div className="header">
-      <h1 className="title">MOVIE WATCHLIST</h1>
-      <input type="text" className="search" placeholder="Search movies..." />
-      {/* <p className="p">?</p> */}
-    </div>
-  );
-}
-
-function Main({ children }) {
-  return <div className="main">{children}</div>;
-}
-
-function Box({ children }) {
-  return <div className="box">{children}</div>;
-}
-
-function SearchResults() {
-  return (
-    <div className="search-results">
-      <h3>SEARCH RESULTS</h3>
-      <ul className="list">
-        {tempMovieData.map((movie) => (
-          <Movie movie={movie} key={movie.Title} />
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function Movie({ movie }) {
-  return (
-    <li className="movie">
-      <img src={movie.Poster} />
-      <h3>{movie.Title}</h3>
-      <div>
-        <div>
-          <span>📅</span>
-          <p>{movie.Year}</p>
-        </div>
-
-        <div>
-          <span>⏳</span>
-          <p>{movie.runtime} min</p>
-        </div>
-      </div>
-    </li>
-  );
-}
-
-function WatchList() {
-  return (
-    <div className="watch-list">
-      <h3>MY WATCHLIST</h3>
-      <ul className="list">
-        {tempWatchedData.map((movie) => (
-          <WatchListMovie movie={movie} key={movie.Title} />
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function WatchListMovie({ movie }) {
-  return (
-    <li className="movie">
-      <img src={movie.Poster} />
-      <h3>{movie.Title}</h3>
-      <div>
-        <div>
-          <span>⏳</span>
-          <p>{movie.runtime} min</p>
-        </div>
-
-        <div>
-          <span>⭐</span>
-          <p>{movie.imdbRating}</p>
-        </div>
-
-        <div>
-          <span>🌟</span>
-          <p>{movie.userRating}</p>
-        </div>
-      </div>
-    </li>
   );
 }

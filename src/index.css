@@ -10,8 +10,9 @@ html {
 
 body {
   background-color: rgb(33, 37, 41);
-  color: rgb(222, 226, 230);
+  /* color: rgb(222, 226, 230); */
   padding: 2.4rem;
+  color: rgb(173, 181, 189);
 
   font-family: "Oswald", sans-serif;
 }
@@ -115,6 +116,10 @@ body {
 .list::-webkit-scrollbar {
   display: none;
   scroll-behavior: smooth;
+}
+
+h3 {
+  color: rgb(255, 255, 255);
 }
 
 .watch-list > h3,
