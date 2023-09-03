@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import WatchListMovie from "./WatchListMovie";
+import StarRating from "./StarRating";
 
 export default function WatchList({
   KEY,
@@ -11,6 +12,7 @@ export default function WatchList({
   setSearch,
 }) {
   const [watchlist, setWatchlist] = useState([]);
+  // const [userRating, setUserRating] = useState(0);
 
   useEffect(
     function () {
@@ -69,6 +71,7 @@ export default function WatchList({
                 key={movie.imdbID}
                 setIsSelected={setIsSelected}
                 setSelectedMovie={setSelectedMovie}
+                userRating={userRating}
               />
             ))}
           </ul>
@@ -91,6 +94,7 @@ export default function WatchList({
           </div>
           <div className="selected-movie-info">
             <div className="movie-actions">
+              <StarRating />
               {!watchlist.includes(selectedMovie) ? (
                 <button onClick={() => handleWatchlist(selectedMovie)}>
                   Add to watchlist

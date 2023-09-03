@@ -207,6 +207,7 @@ h3 {
   border-radius: 7px;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -219,4 +220,27 @@ h3 {
   background-color: rgb(33, 37, 41);
   cursor: pointer;
   transition: 0.3s;
+}
+
+.star-container {
+  display: flex;
+  font-size: 1.8rem;
+  color: rgb(252, 196, 25);
+  gap: 16px;
+
+  margin: 0 0 1rem 0;
+}
+
+.star-container p {
+  margin-bottom: 0.2rem;
+}
+
+.stars {
+  display: flex;
+}
+
+.star {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 }

@@ -2,6 +2,7 @@ export default function WatchListMovie({
   movie,
   setIsSelected,
   setSelectedMovie,
+  userRating,
 }) {
   function handleWatchListMovie() {
     setSelectedMovie(movie);
@@ -20,34 +21,14 @@ export default function WatchListMovie({
 
         <div>
           <span>⭐</span>
-          <p>{movie.imdbRating}</p>
+          <p>{movie.imdbRating} IMDb</p>
         </div>
 
         <div>
           <span>🌟</span>
-          <p>{movie.userRating}</p>
+          <p>{userRating}/10</p>
         </div>
       </div>
-      {/* <button className="delete-btn" onClick={onDeleteMovie}>
-        &#10005;
-      </button> */}
     </li>
   );
 }
-
-//////////////////////////////////////
-
-// function handleSetMovie(film) {
-//   setMovie(film);
-
-//   if (film.imdbID === selectedMovie.imdbID) {
-//     setIsSelected((is) => !is);
-//   } else {
-//     setIsSelected(true);
-//   }
-// }
-
-// function handleWatchListMovie() {
-//   setSelectedMovie(movie);
-//   setIsSelected(true);
-// }
