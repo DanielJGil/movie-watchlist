@@ -10,7 +10,7 @@ const KEY = "d4e50f45";
 export default function App() {
   const [search, setSearch] = useState("bloodhounds");
   const [movieResults, setMovieResults] = useState(null);
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState({});
   const [isSelected, setIsSelected] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
 
@@ -59,6 +59,7 @@ export default function App() {
             setIsSelected={setIsSelected}
             selectedMovie={selectedMovie}
             setSelectedMovie={setSelectedMovie}
+            setSearch={setSearch}
           />
         </Box>
       </MainContent>

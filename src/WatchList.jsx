@@ -8,6 +8,7 @@ export default function WatchList({
   setIsSelected,
   setSelectedMovie,
   selectedMovie,
+  setSearch,
 }) {
   const [watchlist, setWatchlist] = useState([]);
 
@@ -44,6 +45,16 @@ export default function WatchList({
 
     setWatchlist([...watchlist, newMovie]);
     setIsSelected(false);
+    setSearch("");
+  }
+
+  function handleDeleteMovie() {
+    const newList = watchlist.filter(
+      (movie) => movie.imdbID !== selectedMovie.imdbID
+    );
+    setWatchlist(newList);
+    setIsSelected(false);
+    setSelectedMovie({});
   }
 
   return (
@@ -55,7 +66,7 @@ export default function WatchList({
             {watchlist.map((movie) => (
               <WatchListMovie
                 movie={movie}
-                key={movie.Title}
+                key={movie.imdbID}
                 setIsSelected={setIsSelected}
                 setSelectedMovie={setSelectedMovie}
               />
@@ -68,9 +79,9 @@ export default function WatchList({
             <button className="back-btn" onClick={() => setIsSelected(false)}>
               &#10005;
             </button>
-            <img src={selectedMovie?.Poster} />
+            <img src={selectedMovie.Poster} alt={selectedMovie.Title} />
             <div>
-              <h3>{selectedMovie?.Title}</h3>
+              <h3>{selectedMovie.Title}</h3>
               <p>
                 {selectedMovie.Released} - {selectedMovie.Runtime}
               </p>
@@ -80,9 +91,15 @@ export default function WatchList({
           </div>
           <div className="selected-movie-info">
             <div className="movie-actions">
-              <button onClick={() => handleWatchlist(selectedMovie)}>
-                Add to watchlist
-              </button>
+              {!watchlist.includes(selectedMovie) ? (
+                <button onClick={() => handleWatchlist(selectedMovie)}>
+                  Add to watchlist
+                </button>
+              ) : (
+                <button onClick={handleDeleteMovie}>
+                  Remove from watchlist
+                </button>
+              )}
             </div>
             <p>
               <em>{selectedMovie.Plot}</em>
