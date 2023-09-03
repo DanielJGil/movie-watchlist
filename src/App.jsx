@@ -11,6 +11,8 @@ export default function App() {
   const [search, setSearch] = useState("bloodhounds");
   const [movieResults, setMovieResults] = useState(null);
   const [movie, setMovie] = useState(null);
+  const [isSelected, setIsSelected] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState({});
 
   useEffect(
     function () {
@@ -29,7 +31,12 @@ export default function App() {
 
   function handleSetMovie(film) {
     setMovie(film);
-    console.log(movie);
+
+    if (film.imdbID === selectedMovie.imdbID) {
+      setIsSelected((is) => !is);
+    } else {
+      setIsSelected(true);
+    }
   }
 
   return (
@@ -45,7 +52,14 @@ export default function App() {
         </Box>
 
         <Box>
-          <WatchList KEY={KEY} movie={movie} />
+          <WatchList
+            KEY={KEY}
+            movie={movie}
+            isSelected={isSelected}
+            setIsSelected={setIsSelected}
+            selectedMovie={selectedMovie}
+            setSelectedMovie={setSelectedMovie}
+          />
         </Box>
       </MainContent>
     </div>
