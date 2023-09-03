@@ -1,4 +1,4 @@
-export default function Header({ movie, setMovie }) {
+export default function Header({ search, setSearch }) {
   return (
     <div className="header">
       <h1 className="title">MOVIE WATCHLIST</h1>
@@ -6,8 +6,8 @@ export default function Header({ movie, setMovie }) {
         type="text"
         className="search"
         placeholder="Search movies..."
-        value={movie}
-        onChange={(e) => setMovie(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
       {/* <p className="p">?</p> */}
     </div>
