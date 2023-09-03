@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: rgb(33, 37, 41);
+  color: rgb(222, 226, 230);
+  padding: 2.4rem;
+
+  font-family: "Oswald", sans-serif;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  height: 7.2rem;
+  padding: 0 3.2rem;
+  background-color: rgb(43, 48, 53);
+  border-radius: 0.9rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+}
+
+.search {
+  background-color: rgba(255, 255, 255, 0.15);
+  justify-self: center;
+  border: none;
+  padding: 1.1rem 1.6rem;
+  font-size: 1.6rem;
+  border-radius: 0.7rem;
+  width: 40rem;
+  transition: all 0.3s;
+  color: rgb(255, 255, 255);
+}
+
+.search::placeholder {
+  color: rgb(173, 181, 189);
+}
+
+.search:focus {
+  outline: none;
+  box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.main {
+  margin-top: 2.4rem;
+  height: calc(100vh - 7.2rem - 3 * 2.4rem);
+  display: flex;
+  gap: 2.4rem;
+  justify-content: center;
+}
+
+.box {
+  width: 42rem;
+  max-width: 42rem;
+  background-color: rgb(43, 48, 53);
+  border-radius: 0.9rem;
+  overflow: scroll;
+  position: relative;
+}
+
+.list {
+  list-style: none;
+
+  overflow: scroll;
+}
+
+.movie {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  grid-template-rows: auto auto;
+
+  column-gap: 2.4rem;
+  font-size: 1.6rem;
+  align-items: center;
+
+  padding: 1.6rem 3.2rem;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movie img {
+  width: 100%;
+  grid-row: 1 / -1;
+}
+
+.movie div {
+  display: flex;
+  gap: 3rem;
+}
+
+.movie div > div {
+  display: flex;
+  gap: 1rem;
+}
+
+.movie:hover {
+  cursor: pointer;
+  background-color: rgb(52, 58, 64);
+}
+
+.box::-webkit-scrollbar,
+.list::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+.watch-list > h3,
+.search-results > h3 {
+  padding: 1rem 2rem;
+  font-size: 2.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background-color: rgb(43, 48, 53);
+}
