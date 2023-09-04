@@ -10,14 +10,10 @@ html {
 
 body {
   background-color: rgb(33, 37, 41);
-  /* color: rgb(222, 226, 230); */
   padding: 2.4rem;
   color: rgb(173, 181, 189);
 
   font-family: "Oswald", sans-serif;
-
-  display: flex;
-  justify-content: center;
 }
 
 .header {
@@ -268,11 +264,13 @@ h3 {
     gap: 1rem;
 
     height: 15rem;
-    min-width: 43rem;
+
+    width: 37rem;
   }
 
   .main {
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: center;
     align-items: center;
     min-width: 40rem;
     justify-content: flex-start;
@@ -282,7 +280,7 @@ h3 {
   .box {
     max-height: 65rem;
     min-height: 10rem;
-    width: 40rem;
+    width: 37rem;
   }
 
   .open,
@@ -291,10 +289,16 @@ h3 {
   }
 
   .search {
-    width: 35rem;
+    width: 30rem;
   }
 
   .back-btn {
-    margin-left: 36rem;
+    margin-left: 33rem;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding-left: 8rem;
   }
 }
