@@ -2,7 +2,6 @@ export default function WatchListMovie({
   movie,
   setIsSelected,
   setSelectedMovie,
-  userRating,
 }) {
   function handleWatchListMovie() {
     setSelectedMovie(movie);
@@ -26,7 +25,7 @@ export default function WatchListMovie({
 
         <div>
           <span>🌟</span>
-          <p>{userRating}/10</p>
+          <p>{movie.userRating}/10</p>
         </div>
       </div>
     </li>

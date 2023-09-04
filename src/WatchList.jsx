@@ -12,7 +12,7 @@ export default function WatchList({
   setSearch,
 }) {
   const [watchlist, setWatchlist] = useState([]);
-  // const [userRating, setUserRating] = useState(0);
+  const [rating, setRating] = useState(0);
 
   useEffect(
     function () {
@@ -43,11 +43,14 @@ export default function WatchList({
       Director: movie.Director,
       Country: movie.Country,
       Language: movie.Language,
+      userRating: rating,
+      isRated: true,
     };
 
     setWatchlist([...watchlist, newMovie]);
     setIsSelected(false);
     setSearch("");
+    setRating(0);
   }
 
   function handleDeleteMovie() {
@@ -71,7 +74,7 @@ export default function WatchList({
                 key={movie.imdbID}
                 setIsSelected={setIsSelected}
                 setSelectedMovie={setSelectedMovie}
-                userRating={userRating}
+                rating={rating}
               />
             ))}
           </ul>
@@ -94,7 +97,9 @@ export default function WatchList({
           </div>
           <div className="selected-movie-info">
             <div className="movie-actions">
-              <StarRating />
+              {!selectedMovie.isRated && (
+                <StarRating rating={rating} setRating={setRating} />
+              )}
               {!watchlist.includes(selectedMovie) ? (
                 <button onClick={() => handleWatchlist(selectedMovie)}>
                   Add to watchlist

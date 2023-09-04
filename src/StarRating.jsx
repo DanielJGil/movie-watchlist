@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-export default function StarRating() {
-  const [rating, setRating] = useState(0);
+export default function StarRating({ rating, setRating }) {
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rating) {
