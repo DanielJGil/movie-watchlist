@@ -18,11 +18,14 @@ export default function App() {
 
   useEffect(
     function () {
+      const controller = new AbortController();
+
       async function fetchMovies() {
         setIsLoading(true);
 
         const res = await fetch(
-          `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${search}`
+          `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${search}`,
+          { signal: controller.signal }
         );
 
         if (!res.ok)
@@ -36,6 +39,10 @@ export default function App() {
       }
 
       fetchMovies();
+
+      return function () {
+        controller.abort();
+      };
     },
     [search]
   );

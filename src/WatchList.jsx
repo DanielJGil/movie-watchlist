@@ -74,6 +74,18 @@ export default function WatchList({
     setSelectedMovie({});
   }
 
+  useEffect(
+    function () {
+      if (!selectedMovie.Title) return;
+      document.title = selectedMovie.Title;
+
+      return function () {
+        document.title = "Movie Watchlist";
+      };
+    },
+    [selectedMovie.Title]
+  );
+
   return (
     <div className="watch-list">
       {!isSelected ? (
