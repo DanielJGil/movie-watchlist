@@ -11,6 +11,7 @@ export default function WatchList({
   setSelectedMovie,
   selectedMovie,
   setSearch,
+  setMobileSelected,
 }) {
   const [watchlist, setWatchlist] = useState([]);
   const [rating, setRating] = useState(0);
@@ -63,6 +64,9 @@ export default function WatchList({
     setIsSelected(false);
     setSearch("");
     setRating(0);
+    setMobileSelected(false);
+
+    console.log(watchlist);
   }
 
   function handleDeleteMovie() {
@@ -72,6 +76,12 @@ export default function WatchList({
     setWatchlist(newList);
     setIsSelected(false);
     setSelectedMovie({});
+    setMobileSelected(false);
+  }
+
+  function handleSelection() {
+    setIsSelected(false);
+    setMobileSelected(false);
   }
 
   useEffect(
@@ -99,6 +109,7 @@ export default function WatchList({
                 setIsSelected={setIsSelected}
                 setSelectedMovie={setSelectedMovie}
                 rating={rating}
+                setMobileSelected={setMobileSelected}
               />
             ))}
           </ul>
@@ -109,10 +120,7 @@ export default function WatchList({
           {!isLoading && (
             <>
               <div className="selected-movie">
-                <button
-                  className="back-btn"
-                  onClick={() => setIsSelected(false)}
-                >
+                <button className="back-btn" onClick={handleSelection}>
                   &#10005;
                 </button>
                 <img src={selectedMovie.Poster} alt={selectedMovie.Title} />

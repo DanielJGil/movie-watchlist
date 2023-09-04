@@ -1,3 +1,3 @@
-export default function Box({ children }) {
-  return <div className="box">{children}</div>;
+export default function Box({ children, className }) {
+  return <div className={className}>{children}</div>;
 }

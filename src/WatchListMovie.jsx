@@ -2,10 +2,12 @@ export default function WatchListMovie({
   movie,
   setIsSelected,
   setSelectedMovie,
+  setMobileSelected,
 }) {
   function handleWatchListMovie() {
     setSelectedMovie(movie);
     setIsSelected(true);
+    setMobileSelected(true);
   }
 
   return (

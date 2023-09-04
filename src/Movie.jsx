@@ -8,11 +8,6 @@ export default function Movie({ movie, setMovie }) {
           <span>📅</span>
           <p>{movie.Year}</p>
         </div>
-
-        {/* <div>
-          <span>⏳</span>
-          <p>{movie.runtime} min</p>
-        </div> */}
       </div>
     </li>
   );

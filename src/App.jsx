@@ -15,6 +15,7 @@ export default function App() {
   const [isSelected, setIsSelected] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [mobileSelected, setMobileSelected] = useState(false);
 
   useEffect(
     function () {
@@ -49,6 +50,7 @@ export default function App() {
 
   function handleSetMovie(film) {
     setMovie(film);
+    setMobileSelected(true);
 
     if (film.imdbID === selectedMovie.imdbID) {
       setIsSelected((is) => !is);
@@ -62,17 +64,24 @@ export default function App() {
       <Header search={search} setSearch={setSearch} />
 
       <MainContent>
-        <Box>
+        <Box
+          className={mobileSelected || search.length === 0 ? "box open" : "box"}
+        >
           {isLoading && <Loading />}
           {!isLoading && (
             <SearchResults
               movieResults={movieResults}
               setMovie={handleSetMovie}
+              mobileSelected={mobileSelected}
+              search={search}
             />
           )}
         </Box>
-
-        <Box>
+        <Box
+          className={
+            search.length > 0 && !mobileSelected ? "search-closed box" : "box"
+          }
+        >
           <WatchList
             KEY={KEY}
             movie={movie}
@@ -81,6 +90,7 @@ export default function App() {
             selectedMovie={selectedMovie}
             setSelectedMovie={setSelectedMovie}
             setSearch={setSearch}
+            setMobileSelected={setMobileSelected}
           />
         </Box>
       </MainContent>
