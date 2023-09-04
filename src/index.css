@@ -265,7 +265,7 @@ h3 {
 
     height: 15rem;
 
-    width: 37rem;
+    width: 37.5rem;
   }
 
   .main {
@@ -278,9 +278,9 @@ h3 {
   }
 
   .box {
-    max-height: 65rem;
+    max-height: 60rem;
     min-height: 10rem;
-    width: 37rem;
+    width: 37.5rem;
   }
 
   .open,
