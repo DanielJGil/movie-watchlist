@@ -9,7 +9,7 @@ import Loading from "./Loading";
 const KEY = "d4e50f45";
 
 export default function App() {
-  const [search, setSearch] = useState("bloodhounds");
+  const [search, setSearch] = useState("interstellar");
   const [movieResults, setMovieResults] = useState(null);
   const [movie, setMovie] = useState({});
   const [isSelected, setIsSelected] = useState(false);

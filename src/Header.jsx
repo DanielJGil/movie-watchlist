@@ -9,7 +9,7 @@ export default function Header({ search, setSearch }) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {/* <p className="p">?</p> */}
+      <p className="name">&#169; Daniel Gil</p>
     </div>
   );
 }
