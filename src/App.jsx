@@ -4,6 +4,7 @@ import Header from "./Header";
 import MainContent from "./MainContent";
 import SearchResults from "./SearchResults";
 import WatchList from "./WatchList";
+import Loading from "./Loading";
 
 const KEY = "d4e50f45";
 
@@ -13,15 +14,25 @@ export default function App() {
   const [movie, setMovie] = useState({});
   const [isSelected, setIsSelected] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(
     function () {
       async function fetchMovies() {
+        setIsLoading(true);
+
         const res = await fetch(
           `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${search}`
         );
+
+        if (!res.ok)
+          throw new Error("Something went wrong with fetching movies");
+
         const data = await res.json();
+        if (data.Response === "False") throw new Error("Movie not found");
+
         setMovieResults(data.Search);
+        setIsLoading(false);
       }
 
       fetchMovies();
@@ -45,10 +56,13 @@ export default function App() {
 
       <MainContent>
         <Box>
-          <SearchResults
-            movieResults={movieResults}
-            setMovie={handleSetMovie}
-          />
+          {isLoading && <Loading />}
+          {!isLoading && (
+            <SearchResults
+              movieResults={movieResults}
+              setMovie={handleSetMovie}
+            />
+          )}
         </Box>
 
         <Box>

@@ -244,3 +244,10 @@ h3 {
   height: 28px;
   cursor: pointer;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-top: 3rem;
+}
